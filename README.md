@@ -10,7 +10,11 @@ locally.
 # Installation :
 
 ```
-git clone https://github.com/nickoandreas/order-management.git
+git clone https://github.com/nickoandreas/order-management.git order-management
+```
+
+```
+cd order-management
 ```
 
 Note: Please use your MySQL username and password for the following command.
