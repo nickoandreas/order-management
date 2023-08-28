@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .order-detail {
+            width: 50%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<h2>Pending Order Notification</h2>
+
+<p>Hello <span th:text="${customerName}"></span>,</p>
+
+<table class="order-detail">
+    <tr>
+        <th colspan="2">Order Details</th>
+    </tr>
+    <tr>
+        <td>Order Number</td>
+        <td th:text="${orderNumber}"></td>
+    </tr>
+    <tr>
+        <td>Order Date</td>
+        <td th:text="${orderDate}"></td>
+    </tr>
+</table>
+
+<p>
+    We would like to inform you that your order is currently in a pending status. Here are the details of your order:
+</p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+    </tr>
+    <tr th:each="item : ${orderItems}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.qtyOrdered}"></td>
+        <td th:text="'IDR ' + ${item.price}"></td>
+        <td th:text="'IDR ' + ${item.rawTotal}"></td>
+    </tr>
+</table>
+
+<p class="total"><strong>Total Amount: <span th:text="'IDR ' + ${grandTotal}"></span></strong></p>
+
+<p>
+    We will process your order soon after you finish the payment for this order. Please click the link below to
+    complete the payment:
+</p>
+<p><a th:href="${baseUrl} + '/order/payment/' + ${orderNumber}">Finish Payment</a></p>
+
+<p>Thank you for trusting us.</p>
+
+<p>
+    Best regards,<br/>
+    Customer Support Team
+</p>
+</body>
+</html>
